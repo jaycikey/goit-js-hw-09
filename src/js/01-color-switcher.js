@@ -26,7 +26,7 @@ function getRandomHexColor() {
     startButton.disabled = false; // Активуємо кнопку "Start"
     stopButton.disabled = true; // Вимикаємо кнопку "Stop"
     clearInterval(intervalId); // Зупиняємо зміну кольору
-    body.style.backgroundColor = ''; // Скидаємо фон на початковий
+
   }
   
   startButton.addEventListener('click', onStartButtonClick);

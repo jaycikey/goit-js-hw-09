@@ -37,8 +37,9 @@ flatpickr(datePicker, {
   enableTime: true,
   time_24hr: true,
   minuteIncrement: 1,
+  defaultDate: new Date(), // Додайте поточну дату та час за замовчуванням
   onClose: function (selectedDates) {
-    if (selectedDates[0] <= new Date()) {
+    if (selectedDates[0] <= Date.now()) { // Використовуємо Date.now() для поточної дати та часу
       Notiflix.Notify.failure("Please choose a date in the future");
       startButton.disabled = true;
     } else {
@@ -47,6 +48,9 @@ flatpickr(datePicker, {
     }
   },
 });
+
+// Забезпечуємо, що кнопка "Start" відразу деактивована
+startButton.disabled = true;
 
 // Обробник для кнопки "Start"
 startButton.addEventListener('click', () => {
@@ -58,7 +62,7 @@ startButton.addEventListener('click', () => {
   startButton.disabled = true;
 
   countdownIntervalId = setInterval(() => {
-    const currentTime = new Date().getTime();
+    const currentTime = Date.now(); // Використовуємо Date.now() для поточної дати та часу
     const timeRemaining = targetDate - currentTime;
 
     if (timeRemaining <= 0) {
